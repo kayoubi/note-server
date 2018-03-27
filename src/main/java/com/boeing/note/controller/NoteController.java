@@ -37,10 +37,10 @@ public class NoteController {
     }
 
     @PostMapping
-    public ResponseEntity createNote(final @Valid @RequestBody Note note) {
-        final String id = noteService.createNote(note);
+    public ResponseEntity<Note> createNote(final @Valid @RequestBody Note note) {
+        final Note result = noteService.createNote(note);
 
-        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
-        return ResponseEntity.created(location).build();
+        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId()).toUri();
+        return ResponseEntity.created(location).body(result);
     }
 }

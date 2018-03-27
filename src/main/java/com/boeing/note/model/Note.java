@@ -10,9 +10,19 @@ public class Note {
     @Length(min = 5, max = 255)
     private String title;
 
-    @NotEmpty
-    @Length(min = 5, max = 1024)
-    private String summery;
+    @Length(max = 1024)
+    private String content;
+
+    public Note() {
+    }
+
+    public Note(String id, @NotEmpty @Length(min = 5, max = 255) String title, @Length(max = 1024) String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+
+
 
     public String getId() {
         return id;
@@ -30,11 +40,11 @@ public class Note {
         this.title = title;
     }
 
-    public String getSummery() {
-        return summery;
+    public String getContent() {
+        return content;
     }
 
-    public void setSummery(final String summery) {
-        this.summery = summery;
+    public void setContent(final String content) {
+        this.content = content;
     }
 }

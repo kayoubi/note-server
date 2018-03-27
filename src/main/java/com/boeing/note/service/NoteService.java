@@ -28,11 +28,11 @@ public class NoteService {
         return notes.stream().filter(n -> n.getId().equals(id)).findAny().orElseThrow(NoteNotFoundException::new);
     }
 
-    public String createNote(Note note) {
+    public Note createNote(Note note) {
         final String id = Integer.toString(ids.getAndIncrement());
         note.setId(id);
-        notes.add(note);
+        notes.add(0, note);
 
-        return id;
+        return note;
     }
 }
